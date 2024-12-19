@@ -1,0 +1,65 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Серый фон для body */
+  }
+  
+  .container {
+    background-color: #fff; /* Белый фон для контейнера */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .input-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Серая обводка */
+    border-radius: 5px;  /* Скругленные углы */
+    box-sizing: border-box;
+    color: #555;
+  }
+  
+  input[type="text"]::placeholder,
+  input[type="password"]::placeholder {
+    color: #aaa; /* Серый цвет placeholder */
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 20px; /* Увеличиваем padding */
+    border: none;
+    border-radius: 8px; /* Скругленные углы */
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 5px; /*  Добавляем немного отступа снизу */
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
