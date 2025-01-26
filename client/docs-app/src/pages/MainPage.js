@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Main from '../components/MainPage';
+import Main from '../components/Main';
 
 function MainPage() {
     return (

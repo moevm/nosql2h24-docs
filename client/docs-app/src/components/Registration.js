@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import '../css/Login.css'; 
+import {useNavigate} from "react-router-dom"
 
 function Registration() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Здесь будет логика обработки регистрации
     console.log('Login:', login, 'Password:', password, 'Repeat password', repeatPassword);
+    navigate('/main', { state:{username : login}}); 
   };
 
   return (

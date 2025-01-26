@@ -10,6 +10,7 @@ function Login() {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log('Login:', login, 'Password:', password);
+      navigate('/main', { state:{username : login}}); // Переход на маршрут '/main'
     };
 
     const handleClick = () => {

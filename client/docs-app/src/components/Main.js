@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 import '../css/Login.css'
 import {useNavigate} from "react-router-dom"
+import { useLocation } from "react-router-dom";
 
-function Main() {
+function Main(props) {
     const navigate = useNavigate();
-  
+    const location = useLocation();
+    const username = location.state || {}
+
     const handleExit = (e) => {
       e.preventDefault();
       navigate('/'); // Переход на маршрут '/'
     };
 
     const handleDocuments = () => {
-        navigate('/documents', ); // Переход на маршрут '/documents'
+        navigate('/document_list',{ state:{username : username.username}}); // Переход на маршрут '/documents'
     };
   
     return (
@@ -27,4 +30,4 @@ function Main() {
     );
   }
   
-  export default Main;
+export default Main;
