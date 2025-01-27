@@ -11,6 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 100%;
     min-height: 100vh;
     background-color: #f4f4f4; /* Серый фон для body */
   }
@@ -115,6 +116,7 @@ body {
   .top-right-button-container {
     display: flex;
     justify-content: space-between;
+    overflow-y: scroll;
     width: 200px; /* Максимальная ширина контейнера */
   }
   
@@ -165,3 +167,29 @@ body {
     width: 100%;
   }
   
+  .scrolling-text {
+    height: 200px; 
+    overflow-y: scroll; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+  }
+
+  .main-component {
+    display: flex;
+    height: 100vh;
+  }
+
+  .scrolling-text {
+    height: 200px; /* Установите желаемую высоту */
+    overflow-y: scroll; /* Добавляет прокрутку по вертикали */
+    padding: 10px; /* Дополнительное пространство вокруг текста */
+    border: 1px solid #ccc; /* Граница для визуального разделения */
+  }
+  
+  .element--horizontal {
+    grid-row: span 2;
+  }
+  
+  .element--vertical {
+    grid-column: span 2;
+  }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Login.css'
 import {useNavigate} from "react-router-dom"
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
-function DocumentList(props) {
+function DocumentList() {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -21,18 +21,17 @@ function DocumentList(props) {
     //const response = await fetch('http://your-python-backend-url/documents');
     //const data = await response.json();
     const jsonString = `
-    [{"name": "Document 1"}, {"name": "Document 2"}, {"name": "Document 3"}]
-  `;
+    [
+      {"id": 1, "name": "Document 1"},
+      {"id": 2, "name": "Document 2"},
+      {"id": 3, "name": "Document 3"}
+    ]
+    `;
   
   // Парсим строку в объект JavaScript
   const data = JSON.parse(jsonString);
     setDocuments(data);
     setLoading(false);
-  };
-
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-    fetchDocuments(); 
   };
 
   const handleExit = (e) => {
@@ -47,6 +46,12 @@ function DocumentList(props) {
   const handleItemsPerPageChange = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
     fetchDocuments(); // Обновляем список при изменении количества элементов на странице
+  };
+
+  const handleDocumentClick = (e, id) => {
+    console.log(id)
+    e.preventDefault();
+    navigate(`/document_info/${id}`);
   };
 
 return (
@@ -69,6 +74,7 @@ return (
           {documents.map((doc) => (
             <li key={doc.name} className="document-item">
               <p>{doc.name}</p>
+              <button onClick={(e) => handleDocumentClick(e, doc.id)}> Перейти </button>
             </li>
           ))}
         </ul>
