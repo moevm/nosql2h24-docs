@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {useLocation} from "react-router-dom";
 import {useNavigate} from "react-router-dom"
 
-function DocumentInfo() {
+function DocumentEdit() {
   const { id } = useParams();
   console.log(id)
   const [document, setDocument] = useState(null);
@@ -41,11 +40,11 @@ function DocumentInfo() {
         </div>
       <div className="actions">
         <button onClick={() => alert('Просмотр документа')}>Просмотр</button>
-        <button onClick={(e) => {e.preventDefault(); navigate(`/document_edit/${id}`)}}>Редактирование</button>
-        <button onClick={(e) => {e.preventDefault(); navigate(`/version_list/${id}`)}}>Версии</button>
+        <button onClick={() => alert('Редактирование документа')}>Редактирование</button>
+        <button onClick={() => alert('Версии документа')}>Версии</button>
       </div>
     </div>
   );
 }
 
-export default DocumentInfo;
+export default DocumentEdit;

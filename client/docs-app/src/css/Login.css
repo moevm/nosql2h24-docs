@@ -166,13 +166,6 @@ body {
     height: 100%;
     width: 100%;
   }
-  
-  .scrolling-text {
-    height: 200px; 
-    overflow-y: scroll; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-  }
 
   .main-component {
     display: flex;
@@ -180,16 +173,32 @@ body {
   }
 
   .scrolling-text {
-    height: 200px; /* Установите желаемую высоту */
+    height: 50%; /* Установите желаемую высоту */
     overflow-y: scroll; /* Добавляет прокрутку по вертикали */
     padding: 10px; /* Дополнительное пространство вокруг текста */
     border: 1px solid #ccc; /* Граница для визуального разделения */
   }
-  
-  .element--horizontal {
-    grid-row: span 2;
+  .container {
+    display: table;
+    overflow-y: scroll; 
+    height: 90%;
   }
   
-  .element--vertical {
-    grid-column: span 2;
+  .content {
+    width: 50%;
+    overflow-y: scroll; 
   }
+  
+  .statistics {
+    width: 50%;
+    overflow-y: scroll; 
+    display: flex;
+  }
+  
+  .stat-left,
+  .stat-right {
+    width: 50%;
+    display: table-row-group;
+    overflow-y: scroll; 
+  }
+  
