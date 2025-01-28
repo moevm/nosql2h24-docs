@@ -1,48 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {useNavigate} from "react-router-dom"
 
 function DocumentEdit() {
   const { id } = useParams();
-  console.log(id)
+  console.log(id);
   const [document, setDocument] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   const jsonString = `{
-      "Statistics": "Статистика документа" ,
-      "Sections": "Список разделов" ,
-      "Content": "Полное содержание документа" 
-}`;
+    "title": "Документ",
+    "username": "Иван Иванов",
+    "content": "Это содержимое документа.",
+    "previousVersion": "Преходящая версия",
+    "currentVersion": "Текущая версия",
+    "saveDate": "Дата сохранения"
+  }`;
+
   const data = JSON.parse(jsonString);
+
+  useEffect(() => {
+    // Здесь должна быть логика загрузки данных из API
+    setTimeout(() => {
+      setDocument(data);
+      setLoading(false);
+    }, 2000); 
+  }, []);
+
+  if (loading) {
+    return <div>Загрузка...</div>;
+  }
+
+  if (error) {
+    return <div>Ошибка: {error}</div>;
+  }
+
   return (
-    <div>
-      <h2>Информация о документе</h2>
-      <div className='main-component'>
-         <div className='container'>
-            <div className='stat-left'>
-                {data.Content}
-                </div>
-            </div>
-            <div className='stat-right'>
-                <div>
-                    <div className='scrolling-text'>
-                        {data.Sections}
-                    </div>
-                </div>
-                <div>
-                    <div className='scrolling-text'>
-                        {data.Statistics}
-                    </div>
-                </div>
-            </div>
+    <div className="document-info-container">
+      <header>
+        <h2>Документы</h2>
+        <a href="/document_list">Перейти к списку документов</a>
+        <span>{data.username}</span>
+        <button onClick={() => alert('Выход')}>Выйти</button>
+      </header>
+      <main>
+        <div className="document-content">
+          <h3>{data.title}</h3>
+          <div className="scrolling-content">
+            {data.content}
+          </div>
         </div>
-      <div className="actions">
-        <button onClick={() => alert('Просмотр документа')}>Просмотр</button>
-        <button onClick={() => alert('Редактирование документа')}>Редактирование</button>
-        <button onClick={() => alert('Версии документа')}>Версии</button>
-      </div>
+      </main>
+      <footer>
+        <button onClick={() => alert('Предыдущая версия')}>{data.previousVersion}</button>
+        <button onClick={() => alert(`Текущая версия (${new Date().toLocaleString()})`)}>{data.currentVersion}</button>
+        <button onClick={() => alert('Сохранить')}>Сохранить</button>
+      </footer>
     </div>
   );
 }

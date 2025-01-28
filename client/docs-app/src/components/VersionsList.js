@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 
-function VersionList() {
+function VersionsList() {
   const { id } = useParams();
-  console.log(id)
-  const [document, setDocument] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  console.log(id);
 
-  const jsonString = `{
-      "Statistics": "Статистика документа" ,
-      "Sections": "Список разделов" ,
-      "Content": "Полное содержание документа" 
-}`;
-  const data = JSON.parse(jsonString);
+  // Предполагаем, что данные версий документа хранятся в состоянии компонента
+  const [versions, setVersions] = useState([
+    { versionId: 1, content: "Версия 1", createdAt: "2023-01-15 10:00" },
+    { versionId: 2, content: "Версия 2", createdAt: "2023-01-16 11:00" },
+    { versionId: 3, content: "Версия 3", createdAt: "2023-01-17 12:00" }
+  ]);
+
+  const handleEditClick = (versionId) => {
+    // Здесь должна быть логика перехода на страницу редактирования
+    console.log(`Переход к редактированию версии ${versionId}`);
+  };
+
   return (
-    <div>
-      <h2>Информация о документе</h2>
-      <div className='main-component'>
-         <div className='container'>
-            <div className='stat-left'>
-                {data.Content}
-                </div>
-            </div>
-            <div className='stat-right'>
-                <div>
-                    <div className='scrolling-text'>
-                        {data.Sections}
-                    </div>
-                </div>
-                <div>
-                    <div className='scrolling-text'>
-                        {data.Statistics}
-                    </div>
-                </div>
-            </div>
-        </div>
-      <div className="actions">
-        <button onClick={() => alert('Просмотр документа')}>Просмотр</button>
-        <button onClick={() => alert('Редактирование документа')}>Редактирование</button>
-        <button onClick={() => alert('Версии документа')}>Версии</button>
+    <div className="document-versions-container">
+      <div className="versions-grid">
+        {versions.map((version) => (
+          <div key={version.versionId} className="version-item">
+            <p>{version.content}</p>
+            <span>{version.createdAt}</span>
+            <button onClick={() => handleEditClick(version.versionId)}>Редактировать</button>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-export default VersionList;
+export default VersionsList;

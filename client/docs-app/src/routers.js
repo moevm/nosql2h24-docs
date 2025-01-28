@@ -16,7 +16,7 @@ function AppRoutes() {
             <Route path="/document_list" element={<DocumentList/>}/>
             <Route path="/document_info/:id" element={<DocumentInfo/>}/>
             <Route path="/document_edit/:id" element={<DocumentEdit/>}/>
-            <Route path="/version_list/:id" element={<VersionList/>}/>
+            <Route path="/versions_list/:id" element={<VersionList/>}/>
         </Routes>
     )
 }
