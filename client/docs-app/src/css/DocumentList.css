@@ -1,0 +1,69 @@
+body {
+    display: flex;
+}
+
+
+.document-app {
+    width: 800px;
+}
+
+.document-main {
+    width: 100wh;
+}
+
+.search-add-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.search-input {
+    flex: 3;
+}
+
+.button-add-document {
+    flex: 1;
+}
+
+.top-right-button-container {
+    width: 100wh;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.top-right-button-primary {
+    flex: 1;
+}
+
+.top-right-button-secondary {
+    flex: 1;
+}
+
+.username {
+    flex: 3;
+}
+
+.document-list {
+    width: 100wh;
+}
+
+table {
+    border: 2px #0069d9;
+    width: 100%;
+}
+
+thead, tfoot {
+    background-color: rgb (228 240 245);
+}
+
+th, td {
+    /* border: 1px solid rgb(160 160 160); */
+    text-align: left;
+    padding: 8px 10px
+}
+
+tr:hover {
+    background-color: rgb(200 200 200);
+}

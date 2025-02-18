@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Серый фон для body */
+  }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 20px; /* Увеличиваем padding */
+    border: none;
+    border-radius: 8px; /* Скругленные углы */
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 5px; /*  Добавляем немного отступа снизу */
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
+  

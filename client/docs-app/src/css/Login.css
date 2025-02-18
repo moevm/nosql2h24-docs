@@ -1,239 +1,41 @@
-html {
-  font-family: sans-serif;
+.container {
+  background-color: #fff; /* Белый фон для контейнера */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.input-container {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f4f4f4; /* Серый фон для body */
+  margin-bottom: 10px;
 }
-body {
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 100%;
-    min-height: 100vh;
-    background-color: #f4f4f4; /* Серый фон для body */
-  }
-  
-  .container {
-    background-color: #fff; /* Белый фон для контейнера */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
-  .input-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 80%;
-    padding: 10px;
-    border: 1px solid #ccc; /* Серая обводка */
-    border-radius: 5px;  /* Скругленные углы */
-    box-sizing: border-box;
-    color: #555;
-  }
-  
-  input[type="text"]::placeholder,
-  input[type="password"]::placeholder {
-    color: #aaa; /* Серый цвет placeholder */
-  }
-  
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px 20px; /* Увеличиваем padding */
-    border: none;
-    border-radius: 8px; /* Скругленные углы */
-    cursor: pointer;
-    width: 80%;
-    margin-bottom: 5px; /*  Добавляем немного отступа снизу */
-  }
-  
-  button:hover {
-    background-color: #0069d9;
-  }
 
-  .document-app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-    height: 100%;
-    background-color: #f0f0f0;
-  }
+input[type="text"],
+input[type="password"] {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Серая обводка */
+  border-radius: 5px;  /* Скругленные углы */
+  box-sizing: border-box;
+  color: #555;
+}
 
-  .document-list {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 90%;
-    max-width: 100%;
-    margin: 0 auto 20px;
-  }
-  
-  .document-item {
-    background-color: #f9f9f9;
-    padding: 15px;
-    width: 90%;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
-  .document-item:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .top-right-buttons {
-    position: fixed;
-    display: inline;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-  }
-  
-  .top-right-button-container {
-    display: flex;
-    justify-content: space-between;
-    overflow-y: scroll;
-    width: 200px; /* Максимальная ширина контейнера */
-  }
-  
-  .top-right-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    min-width: 80px; /* Минимальная ширина кнопки */
-    max-width: 30%; /* Максимальная ширина кнопки */
-  }
-  
-  .top-right-button:hover {
-    background-color: #0056b3;
-  }
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #aaa; /* Серый цвет placeholder */
+}
 
-  .top-right-button-primary {
-    background-color: #007bff;
-  }
-  
-  .top-right-button-secondary {
-    background-color: #6c757d;
-  }
-  
-  .top-right-button-success {
-    background-color: #28a745;
-  }
-  
-  .top-right-button-danger {
-    background-color: #dc3545;
-  }
-  
-  .DocumentListPage {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  .DocumentList {
-    height: 100%;
-    width: 100%;
-  }
-
-  .main-component {
-    display: flex;
-    height: 100vh;
-  }
-
-  .scrolling-text {
-    height: 50%; /* Установите желаемую высоту */
-    overflow-y: scroll; /* Добавляет прокрутку по вертикали */
-    padding: 10px; /* Дополнительное пространство вокруг текста */
-    border: 1px solid #ccc; /* Граница для визуального разделения */
-  }
-  .container {
-    display: table;
-    overflow-y: scroll; 
-    height: 90%;
-  }
-  
-  .content {
-    width: 50%;
-    overflow-y: scroll; 
-  }
-  
-  .statistics {
-    width: 50%;
-    overflow-y: scroll; 
-    display: flex;
-  }
-  
-  .stat-left,
-  .stat-right {
-    width: 50%;
-    display: table-row-group;
-    overflow-y: scroll; 
-  }
-  
-  .scrolling-content {
-    max-height: 500px; /* Установите желаемую максимальную высоту */
-    overflow-y: auto;
-  }
-
-  .document-versions-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .versions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  .version-item {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .version-item p {
-    margin-bottom: 10px;
-    overflow-y: auto;
-    max-height: 200px;
-  }
-  
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

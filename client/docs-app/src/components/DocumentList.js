@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../css/Login.css'
+import "../css/Base.css"
+import "../css/DocumentList.css"
 import {useNavigate} from "react-router-dom"
 import {useLocation} from "react-router-dom";
 
@@ -22,9 +23,9 @@ function DocumentList() {
     //const data = await response.json();
     const jsonString = `
     [
-      {"id": 1, "name": "Document 1"},
-      {"id": 2, "name": "Document 2"},
-      {"id": 3, "name": "Document 3"}
+      {"id": 1, "title": "Document 1", "version": {"version": 1, "creationDate": "22.01.2024"}},
+      {"id": 2, "title": "Document 2", "version": {"version": 7, "creationDate": "09.11.2024"}},
+      {"id": 3, "title": "Document 3", "version": {"version": 9, "creationDate": "22.12.2024"}}
     ]
     `;
   
@@ -66,18 +67,28 @@ return (
 
       <main className="document-main">
         <div className="search-add-container">
-          <input type="text" placeholder="Поиск..." />
-          <button>Добавить</button>
+          <input className="search-input" type="text" placeholder="Поиск..." />
+          <button className="button-add-document">Добавить</button>
         </div>
 
-        <ul className="document-list">
+        <table className="document-list">
+          <thead>
+            <tr>
+              <th>Название</th>
+              <th>Версия</th>
+              <th>Дата создания</th>
+            </tr>
+          </thead>
+          <tbody>
           {documents.map((doc) => (
-            <li key={doc.name} className="document-item">
-              <p>{doc.name}</p>
-              <button onClick={(e) => handleDocumentClick(e, doc.id)}> Перейти </button>
-            </li>
+            <tr onClick={(e) => handleDocumentClick(e, doc.id)}>
+            <td>{doc.title}</td>
+            <td>{doc.version.version}</td>
+            <td>{doc.version.creationDate}</td>
+            </tr>
           ))}
-        </ul>
+          </tbody>
+        </table>
 
         <label className="checkbox-label">
           <input 
