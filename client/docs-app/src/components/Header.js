@@ -22,11 +22,11 @@ function Header() {
             <div className='header-username'>
                 <h2>{userName}</h2>
             </div>
-            <div className='header-documents' onClick={handleDocuments}>
-                <h2>Документы</h2>
+            <div className='header-documents' >
+                <h2 className="header-documents-h2" onClick={handleDocuments}>Документы</h2>
             </div>
-            <div className='header-main'>
-                <button onClick={handleExit}>На главную</button>
+            <div className='header-main' >
+                <h2 className='header-main-h2' onClick={handleExit}>На главную</h2>
             </div>
         </div>
     )

@@ -12,3 +12,7 @@
     flex: 1;
 }
 
+.header-documents-h2:hover, .header-main-h2:hover {
+  color: #b8bc43;
+  cursor:default;
+}

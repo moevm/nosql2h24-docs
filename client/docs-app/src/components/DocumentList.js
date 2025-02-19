@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Popup from "reactjs-popup"
 import "../css/Base.css"
 import "../css/DocumentList.css"
 import {useNavigate} from "react-router-dom"
@@ -47,8 +48,11 @@ function DocumentList() {
     navigate(`/document_info/${id}`);
   };
 
+  const openModal = () => {};
+
 return (
     <div className="document-app">
+      
       <Header/>
       <main className="document-main">
         <div className='document-main-table'>
@@ -85,13 +89,24 @@ return (
           </label>
         </div>
         <div className='document-filters'>
-            <div className='document-filters-date'>
-              <button className="button-add-document">Добавить</button>
-              <label>Дата создания от </label>
-              <input type="date"></input>
-              <label> до </label>
-              <input type="date"></input>
-            </div>
+              <div>
+              <Popup trigger={<button className="button-add-document" onClick={openModal}>Добавить</button>} position="right center" modal nested>
+                <div className='document-add-modal'>
+                  <input></input>
+                </div>
+              </Popup>
+              </div>
+              <div className='document-filters-element'>
+                <label>Дата создания</label>
+                <div>
+                  <label>от </label>
+                  <input type="date"></input>
+                </div>
+                <div>
+                  <label>до </label>
+                  <input type="date"></input>
+                </div>
+              </div>
         </div>
       </main>
     </div>
