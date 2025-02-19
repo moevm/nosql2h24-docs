@@ -1,4 +1,13 @@
+.login-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100wh;
+  height: 100vh;
+}
+
 .container {
+  margin: auto;
   background-color: #fff; /* Белый фон для контейнера */
   padding: 20px;
   border-radius: 5px;

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../css/Base.css'
 import '../css/Login.css'
 import {useNavigate} from "react-router-dom"
+import Logo from './Logo';
 
 function Login() {
     const [login, setLogin] = useState('');
@@ -19,27 +20,29 @@ function Login() {
     };
   
     return (
-      <div className="container">
-        <h1><span style={{ fontSize: '20px' }}>☰</span> Мои.Документы</h1>
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="login"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-          />
-        </div>
-        <div className="input-container">
-          <input
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="button-container">
-          <button onClick={handleSubmit}>Войти</button>
-          <button onClick={handleClick}>Зарегистрироваться</button>
+      <div className='login-main'>
+        <div className="container">
+          <Logo/>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder="login"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+              />
+          </div>
+          <div className="input-container">
+            <input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              />
+          </div>
+          <div className="button-container">
+            <button onClick={handleSubmit}>Войти</button>
+            <button onClick={handleClick}>Зарегистрироваться</button>
+          </div>
         </div>
       </div>
     );

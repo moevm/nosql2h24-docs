@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-logo {
+    flex: 4;
+}
+
+.header-username, .header-documents, .header-main {
+    margin: auto;
+    flex: 1;
+}
+

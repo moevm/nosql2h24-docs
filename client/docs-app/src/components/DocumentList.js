@@ -3,6 +3,7 @@ import "../css/Base.css"
 import "../css/DocumentList.css"
 import {useNavigate} from "react-router-dom"
 import {useLocation} from "react-router-dom";
+import Header from './Header';
 
 function DocumentList() {
   const [documents, setDocuments] = useState([]);
@@ -35,15 +36,6 @@ function DocumentList() {
     setLoading(false);
   };
 
-  const handleExit = (e) => {
-    e.preventDefault();
-    navigate('/'); // Переход на маршрут '/'
-  };
-
-  const handleDocuments = () => {
-      navigate('/main', ); // Переход на маршрут '/documents'
-  };
-
   const handleItemsPerPageChange = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
     fetchDocuments(); // Обновляем список при изменении количества элементов на странице
@@ -57,47 +49,50 @@ function DocumentList() {
 
 return (
     <div className="document-app">
-        <div className="top-right-button-container">
-            <span className="username">
-                {username.username}
-            </span>
-            <button onClick={handleDocuments} className="top-right-button top-right-button-primary">Документы</button>
-            <button onClick={handleExit} className="top-right-button top-right-button-secondary">Выйти</button>
-        </div>
-
+      <Header/>
       <main className="document-main">
-        <div className="search-add-container">
-          <input className="search-input" type="text" placeholder="Поиск..." />
-          <button className="button-add-document">Добавить</button>
+        <div className='document-main-table'>
+          <div className="search-add-container">
+            <input className="search-input" type="text" placeholder="Поиск..." />
+          </div>
+
+          <table className="document-list">
+            <thead>
+              <tr>
+                <th>Название</th>
+                <th>Версия</th>
+                <th>Дата создания</th>
+              </tr>
+            </thead>
+            <tbody>
+            {documents.map((doc) => (
+              <tr onClick={(e) => handleDocumentClick(e, doc.id)}>
+              <td>{doc.title}</td>
+              <td>{doc.version.version}</td>
+              <td>{doc.version.creationDate}</td>
+              </tr>
+            ))}
+            </tbody>
+          </table>
+
+          <label className="checkbox-label">
+            <input 
+              type="checkbox" 
+              checked={itemsPerPage === 20} 
+              onChange={(e) => handleItemsPerPageChange(e.target.checked ? 20 : itemsPerPage)} 
+              />
+            <span>20 элементов на странице</span>
+          </label>
         </div>
-
-        <table className="document-list">
-          <thead>
-            <tr>
-              <th>Название</th>
-              <th>Версия</th>
-              <th>Дата создания</th>
-            </tr>
-          </thead>
-          <tbody>
-          {documents.map((doc) => (
-            <tr onClick={(e) => handleDocumentClick(e, doc.id)}>
-            <td>{doc.title}</td>
-            <td>{doc.version.version}</td>
-            <td>{doc.version.creationDate}</td>
-            </tr>
-          ))}
-          </tbody>
-        </table>
-
-        <label className="checkbox-label">
-          <input 
-            type="checkbox" 
-            checked={itemsPerPage === 20} 
-            onChange={(e) => handleItemsPerPageChange(e.target.checked ? 20 : itemsPerPage)} 
-          />
-          <span>20 элементов на странице</span>
-        </label>
+        <div className='document-filters'>
+            <div className='document-filters-date'>
+              <button className="button-add-document">Добавить</button>
+              <label>Дата создания от </label>
+              <input type="date"></input>
+              <label> до </label>
+              <input type="date"></input>
+            </div>
+        </div>
       </main>
     </div>
   );

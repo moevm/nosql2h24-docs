@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../css/Login.css'
 import {useNavigate} from "react-router-dom"
 import { useLocation } from "react-router-dom";
+import Logo from './Logo';
 
 function Main(props) {
     const navigate = useNavigate();
@@ -18,13 +19,15 @@ function Main(props) {
     };
   
     return (
-      <div className="container">
-        <h1><span style={{ fontSize: '20px' }}>☰</span> Мои.Документы</h1>
-        <div className="button-container">
-          <button onClick={handleExit}>Выйти</button>
-          <button onClick={handleDocuments}>Документы</button>
-          <button onClick={handleDocuments}>Импорт</button>
-          <button onClick={handleDocuments}>Экспорт</button>
+      <div className='login-main'>
+        <div className="container">
+          <Logo/>
+          <div className="button-container">
+            <button onClick={handleExit}>Выйти</button>
+            <button onClick={handleDocuments}>Документы</button>
+            <button onClick={handleDocuments}>Импорт</button>
+            <button onClick={handleDocuments}>Экспорт</button>
+          </div>
         </div>
       </div>
     );

@@ -1,14 +1,26 @@
-body {
-    display: flex;
-}
 
 
 .document-app {
-    width: 800px;
+    width: 1200px;
+    display: block;
+    margin: auto;
+    /* display: flex; */
+    /* flex-direction: column; */
 }
 
 .document-main {
-    width: 100wh;
+    display: flex;
+    flex-direction: row;
+}
+
+.document-main-table {
+    flex: 3;
+}
+
+.document-filters {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .search-add-container {
@@ -18,26 +30,10 @@ body {
 }
 
 .search-input {
-    flex: 3;
+    flex: 4;
 }
 
 .button-add-document {
-    flex: 1;
-}
-
-.top-right-button-container {
-    width: 100wh;
-    display: flex;
-    flex-direction: row;
-    display: flex;
-    gap: 10px;
-}
-
-.top-right-button-primary {
-    flex: 1;
-}
-
-.top-right-button-secondary {
     flex: 1;
 }
 
