@@ -11,6 +11,8 @@ function DocumentList() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState('');
   const location = useLocation();
   const username = location.state || {}
 
@@ -50,9 +52,27 @@ function DocumentList() {
 
   const openModal = () => {};
 
+  const handleFilenameChange = (e) => {
+    setFileName(e.target.value);
+  }
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0])
+    setFileName(file.name)
+  }
+
+  const handleClosePopup = (e) => {
+    setFileName('')
+  }
+
+  const handleAddClick = (e) => {
+    // Вызов api для загрузки документа
+    // navigate на просмотр нужного документа
+  }
+
+
 return (
     <div className="document-app">
-      
       <Header/>
       <main className="document-main">
         <div className='document-main-table'>
@@ -90,9 +110,12 @@ return (
         </div>
         <div className='document-filters'>
               <div>
-              <Popup trigger={<button className="button-add-document" onClick={openModal}>Добавить</button>} position="right center" modal nested>
+              <Popup onClose={handleClosePopup} trigger={<button className="button-add-document" onClick={openModal}>Загрузить</button>} position="right center" modal nested>
                 <div className='document-add-modal'>
-                  <input></input>
+                  <h2>Загрузка документа</h2>
+                  <input type="file" accept='.pdf' onChange={handleFileChange}></input>
+                  <input type="text" placeholder='Название документа' value={fileName} onChange={handleFilenameChange}></input>
+                  <button onClick={handleAddClick}>Загрузить</button>
                 </div>
               </Popup>
               </div>
