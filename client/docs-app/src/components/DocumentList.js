@@ -10,7 +10,6 @@ function DocumentList() {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const location = useLocation();
@@ -37,11 +36,6 @@ function DocumentList() {
   const data = JSON.parse(jsonString);
     setDocuments(data);
     setLoading(false);
-  };
-
-  const handleItemsPerPageChange = (newItemsPerPage) => {
-    setItemsPerPage(newItemsPerPage);
-    fetchDocuments(); // Обновляем список при изменении количества элементов на странице
   };
 
   const handleDocumentClick = (e, id) => {
@@ -98,15 +92,6 @@ return (
             ))}
             </tbody>
           </table>
-
-          <label className="checkbox-label">
-            <input 
-              type="checkbox" 
-              checked={itemsPerPage === 20} 
-              onChange={(e) => handleItemsPerPageChange(e.target.checked ? 20 : itemsPerPage)} 
-              />
-            <span>20 элементов на странице</span>
-          </label>
         </div>
         <div className='document-filters'>
               <div>
