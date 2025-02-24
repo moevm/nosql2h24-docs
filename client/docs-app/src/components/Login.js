@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import '../css/Base.css'
 import '../css/Login.css'
 import {useNavigate} from "react-router-dom"
+import axios from "axios"
 import Logo from './Logo';
+import { SERVER } from '../routers';
 
 function Login() {
     const [login, setLogin] = useState('');
@@ -11,6 +13,8 @@ function Login() {
   
     const handleSubmit = (e) => {
       e.preventDefault();
+      axios.AxiosHeaders.set
+      axios.get(SERVER + "/login", { data: {"login": login, "password": password}})
       console.log('Login:', login, 'Password:', password);
       navigate('/main', { state:{username : login}}); // Переход на маршрут '/main'
     };
