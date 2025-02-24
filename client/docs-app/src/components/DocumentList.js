@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Popup from "reactjs-popup"
+import {Document, Page} from 'react-pdf'
 import "../css/Base.css"
 import "../css/DocumentList.css"
 import {useNavigate} from "react-router-dom"
