@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Popup from "reactjs-popup"
 import {Document, Page} from 'react-pdf'
 import "../css/Base.css"
@@ -6,6 +7,7 @@ import "../css/DocumentList.css"
 import {useNavigate} from "react-router-dom"
 import {useLocation} from "react-router-dom";
 import Header from './Header';
+import { SERVER } from '../routers';
 
 function DocumentList() {
   const [documents, setDocuments] = useState([]);
@@ -25,18 +27,29 @@ function DocumentList() {
   const fetchDocuments = async () => {
     //const response = await fetch('http://your-python-backend-url/documents');
     //const data = await response.json();
-    const jsonString = `
-    [
-      {"id": 1, "title": "Document 1", "version": {"version": 1, "creationDate": "22.01.2024"}},
-      {"id": 2, "title": "Document 2", "version": {"version": 7, "creationDate": "09.11.2024"}},
-      {"id": 3, "title": "Document 3", "version": {"version": 9, "creationDate": "22.12.2024"}}
-    ]
-    `;
-  
-  // Парсим строку в объект JavaScript
-  const data = JSON.parse(jsonString);
-    setDocuments(data);
-    setLoading(false);
+    // const jsonString = `
+    // [
+    //   {"id": 1, "title": "Document 1", "version": {"version": 1, "creationDate": "22.01.2024"}},
+    //   {"id": 2, "title": "Document 2", "version": {"version": 7, "creationDate": "09.11.2024"}},
+    //   {"id": 3, "title": "Document 3", "version": {"version": 9, "creationDate": "22.12.2024"}}
+    // ]
+    // `;
+    axios.get(SERVER + "/documents_list",
+     { 
+       headers: {
+         "Access-Control-Allow-Credintals": "*",
+         "Access-Control-Allow-Origin": "*",
+         "Access-Control-Allow-Methods": "GET,POST,PUT,GET,HEAD,PATCH,DELETE",
+         "Content-Type": 'application/json'
+       } 
+     })
+     .then((res) => {
+       console.log(res.data)
+       setDocuments(res.data)
+     })
+     .catch((error) => {
+       console.log(error)
+     })
   };
 
   const handleDocumentClick = (e, id) => {
@@ -84,11 +97,11 @@ return (
               </tr>
             </thead>
             <tbody>
-            {documents.map((doc) => (
+            {documents.map ((doc) => (
               <tr onClick={(e) => handleDocumentClick(e, doc.id)}>
               <td>{doc.title}</td>
-              <td>{doc.version.version}</td>
-              <td>{doc.version.creationDate}</td>
+              {/* <td>{doc.version.version}</td> */}
+              {/* <td>{doc.version.creationDate}</td> */}
               </tr>
             ))}
             </tbody>

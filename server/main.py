@@ -6,6 +6,8 @@ from database import DataBase
 conn = DataBase("neo4j://localhost:7687", "neo4j", "admin")
 conn.query('MATCH (n) DETACH DELETE n')
 conn.query("CREATE (admin:User {id: 1, login: 'admin', password: 'admin'})")
+conn.query("CREATE (document_1:Document {id: 1, title: 'Документ 1'})")
+
 
 app = FastAPI()
 
@@ -29,6 +31,13 @@ def login(data = Body()):
         return {"success": False}
     return {"success": True, "userId": result[0].get("a.id")}
 
+@app.get("/documents_list")
+def document_list():
+    result = conn.query("match (a:Document) return a")
+    print(result)
+    res = [{"id": x['a'].get("id"), "title": x['a'].get("title")} for x in result]
+    print(res)
+    return res
 
 
 # if __name__ == '__main__':
