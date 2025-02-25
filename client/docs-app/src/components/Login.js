@@ -7,6 +7,7 @@ import Logo from './Logo';
 import { SERVER } from '../routers';
 
 function Login() {
+    const [loginStatus, setLoginStatus] = useState('')
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -26,7 +27,13 @@ function Login() {
             "Content-Type": 'application/json'
           } 
         })
-        .then((res) => {})
+        .then((res) => {
+          console.log(res.data)
+          if (res.data.success)
+            navigate('/main', { state:{username : login}}); // Переход на маршрут '/main'
+          else 
+            setLoginStatus("Неправильный логин или пароль")
+        })
         .catch((error) => {
           console.log(error)
         })
@@ -47,7 +54,6 @@ function Login() {
       //   }
       // )
       console.log('Login:', login, 'Password:', password);
-      navigate('/main', { state:{username : login}}); // Переход на маршрут '/main'
     };
 
     const handleClick = () => {
@@ -58,6 +64,9 @@ function Login() {
       <div className='login-main'>
         <div className="container">
           <Logo/>
+          <div className="input-container-label">
+            <label  >{loginStatus}</label>
+          </div>
           <div className="input-container">
             <input
               type="text"

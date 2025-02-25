@@ -1,7 +1,11 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from database import DataBase
+
+conn = DataBase("neo4j://localhost:7687", "neo4j", "admin")
+conn.query('MATCH (n) DETACH DELETE n')
+conn.query("CREATE (admin:User {id: 1, login: 'admin', password: 'admin'})")
 
 app = FastAPI()
 
@@ -16,12 +20,16 @@ app.add_middleware(
 )
 
 @app.post("/login")
-def login():
-    return {}
+def login(data = Body()):
+    print(data)
+    login = data["login"]
+    password = data["password"]
+    result = conn.query("match (a:User) where a.login = '{}' and a.password = '{}' return a.id".format(login, password))
+    if not result:
+        return {"success": False}
+    return {"success": True, "userId": result[0].get("a.id")}
 
-conn = DataBase("neo4j://localhost:7687", "neo4j", "admin")
-conn.query('MATCH (n) DETACH DELETE n')
-conn.query("CREATE (admin:User {id: 1, login: 'admin', password: 'password'})")
+
 
 # if __name__ == '__main__':
     # Database connection 
