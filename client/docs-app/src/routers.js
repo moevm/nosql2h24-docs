@@ -22,4 +22,4 @@ function AppRoutes() {
 }
 
 export default AppRoutes;
-export const SERVER = 'http://localhost:5000'
+export const SERVER = 'http://localhost:8000'
