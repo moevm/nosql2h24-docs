@@ -5,26 +5,16 @@ import jwt
 
 
 app = Flask(__name__)
-rest_api = Api(app)
 
-singin_model = rest_api.model(
-    'SignInModel', {
-        'login':fields.String(required=True),
-        'password': fields.String(required=True)
-    }
-)
+@app.route("/")
+def root():
+    return {}
 
-@rest_api.route('/login')
-class Login(Resource):
-
-    @rest_api.expect(singin_model, validate=True)
-    def get(self):
-        
-        req_data = request.get_json()
-
-        _login = req_data.get("login")
-        _password = req_data.get("password")
-
+@app.route("/login", methods=["POST"])
+def login():
+    resp = make_response(200)
+    resp.headers["Access-Control-Allow-Origin"] = "True"
+    return resp
 
 if __name__ == '__main__':
 

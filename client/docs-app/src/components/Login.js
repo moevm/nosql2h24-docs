@@ -1,8 +1,8 @@
+import axios from "axios"
 import React, {useState} from 'react';
 import '../css/Base.css'
 import '../css/Login.css'
-import {useNavigate} from "react-router-dom"
-import axios from "axios"
+import {data, useNavigate} from "react-router-dom"
 import Logo from './Logo';
 import { SERVER } from '../routers';
 
@@ -13,8 +13,39 @@ function Login() {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      axios.AxiosHeaders.set
-      axios.get(SERVER + "/login", { data: {"login": login, "password": password}})
+      axios.post(SERVER + "/login",
+         {
+          "login": login, 
+          "password": password
+        },  
+        { 
+          headers: {
+            "Access-Control-Allow-Credintals": "*",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,GET,HEAD,PATCH,DELETE",
+            "Content-Type": 'application/json'
+          } 
+        })
+        .then((res) => {})
+        .catch((error) => {
+          console.log(error)
+        })
+      // let res = fetch(
+      //   SERVER + "/login",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Access-Control-Allow-Credintals": "*",
+      //       "Access-Control-Allow-Origin": "*",
+      //       "Access-Control-Allow-Methods": "GET,POST,PUT,GET,HEAD,PATCH,DELETE",
+      //       "Content-Type": 'application/json'
+      //     },
+      //     body: {
+      //       'login': login,
+      //       'password': password
+      //     }
+      //   }
+      // )
       console.log('Login:', login, 'Password:', password);
       navigate('/main', { state:{username : login}}); // Переход на маршрут '/main'
     };
