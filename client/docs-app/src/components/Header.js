@@ -3,13 +3,15 @@ import "../css/Base.css"
 import '../css/Header.css'
 import { useNavigate } from 'react-router-dom'
 import Logo from './Logo';
+import { useLocation } from 'react-router-dom';
 
 function Header() {
-    const [userName, setUsername] = useState("");
-    const navigate = useNavigate();
+    const navigate = useNavigate();  
+    const location = useLocation();
+    // const username = location.state || {}
 
     const handleExit = () => {
-        navigate("/main", {state: {userName: userName }});
+        navigate("/main");
     }
 
     const handleDocuments = () => {
@@ -20,7 +22,7 @@ function Header() {
         <div className='header'>
             <Logo/>
             <div className='header-username'>
-                <h2>{userName}</h2>
+                {/* <h2>{username.username}</h2> */}
             </div>
             <div className='header-documents' >
                 <h2 className="header-documents-h2" onClick={handleDocuments}>Документы</h2>

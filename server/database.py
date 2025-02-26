@@ -8,13 +8,13 @@ class DataBase(GraphDatabase):
         if self.driver is not None:
             self.driver.close()
 
-    def query(self, query, db=None):
+    def query(self, query, params=None, db=None):
         assert self.driver is not None, "Driver not initialized!"
         session = None
         response = None
         try:
             session = self.driver.session(database=db) if db is not None else self.driver.session()
-            response = list(session.run(query))
+            response = list(session.run(query, params))
         except Exception as e:
             print("Query failed:", e)
         finally:

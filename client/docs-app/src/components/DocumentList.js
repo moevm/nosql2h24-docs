@@ -66,7 +66,6 @@ function DocumentList() {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
-    setFileName(file.name)
   }
 
   const handleClosePopup = (e) => {
@@ -76,6 +75,38 @@ function DocumentList() {
   const handleAddClick = (e) => {
     // Вызов api для загрузки документа
     // navigate на просмотр нужного документа
+    const formData = new FormData();
+    formData.append('file', file);
+    axios.post(SERVER + "/upload", formData, 
+      {
+        headers: {
+          "Access-Control-Allow-Credintals": "*",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST,PUT,GET,HEAD,PATCH,DELETE",
+          "Content-Type": 'multipart/form-data'
+        }
+      }
+    ).then((res) => {
+      console.log(res)
+      console.log('File sent')
+      axios.post(SERVER + "/create_document", 
+        {
+          "user": username,
+          "title": fileName,
+          "filepath": res.data.filename
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Credintals": "*",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,GET,HEAD,PATCH,DELETE",
+            "Content-Type": 'application/json'
+          }
+        }
+      ).then(() => {
+        console.log(res)
+      })
+    })
   }
 
 
