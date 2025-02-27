@@ -1,0 +1,57 @@
+// colorScheme
+$blue_1: #ddf2fd;
+$blue_2: #b3d7ed;
+$blue_3: #91b4cb;
+$blue_4: #6499b9;
+$blue_5: #0087c9;
+$blue_7: #182335;
+$blue_8: #2e3d58;
+$blue_9: #111927;
+$blue_10: #6b7891;
+
+$gray_blue_1: #f5f7fa;
+$gray_blue_2: #e8ebed;
+$gray_blue_3: #e1e4e6;
+$gray_blue_4: #c1d6e3;
+$gray_blue_5: #eaeef6;
+$gray_blue_6: #e3e9ff;
+$gray_blue_7: #414e5b;
+$gray_blue_8: #8da0c1;
+$gray_blue_9: #c1d6e380;
+
+$gray_1: #ffffff;
+$gray_2: #fcfdff;
+$gray_4: #e6e6e6;
+$gray_5: #d9d9d9;
+$gray_6: #cccccc;
+$gray_7: #bfbfbf;
+$gray_9: #999999;
+$gray_11: #666666;
+$gray_12: #333333;
+
+$tooltip_bg_color: #ffffcd;
+
+// sizes
+$item_size: 210px;
+
+$heightDragDrop: 210px; //210
+$widthDragDrop: 280px; // 280
+$widthDragDrop_md: calc(#{$widthDragDrop} * 1.5);
+
+$widthDialogWindow: 300px; // 280
+$widthDialogWindow_md: calc(#{$widthDialogWindow} * 1.5);
+
+$sideToolsItem: 200px;
+$sideToolsItem_md: calc(#{$sideToolsItem} * 1.5);
+
+$svg_min: 12px;
+$svg_med: 15px;
+$svg_max: 18px;
+
+$tooltip_size: 100px;
+
+$border-radius: 10px;
+$padding: 16px;
+$row-gap: 16px;
+
+$transition: 0.1s ease-in-out;
