@@ -1,0 +1,45 @@
+{
+  "name": "converter_xml_s1000d",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "b64-to-blob": "^1.2.19",
+    "core-js": "^3.40.0",
+    "cross-spawn": "^6.0.6",
+    "file-saver": "^2.0.5",
+    "flush-promises": "^1.0.2",
+    "jszip": "^3.10.1",
+    "mitt": "^3.0.1",
+    "pinia": "^2.3.1",
+    "vue": "^3.5.13",
+    "vue-pdf-embed": "^2.1.2",
+    "vue-router": "^4.5.0",
+    "vue-search-select": "^3.2.0",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-router": "^5.0.8",
+    "@vue/cli-plugin-vuex": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "globals": "^15.15.0",
+    "identity-obj-proxy": "^3.0.0",
+    "sass": "^1.85.1",
+    "sass-loader": "^16.0.5"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
