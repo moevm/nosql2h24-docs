@@ -23,4 +23,4 @@
 | user1                          | pass1   |
 | Matvey                         | 12345678|
 
-Для запуска введите команду
+Для запуска введите команду docker compose build && docker compose up
