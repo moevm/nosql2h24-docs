@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 function Header() {
     const navigate = useNavigate();  
     const location = useLocation();
+    const state = location.state || {}
     // const username = location.state || {}
 
     const handleExit = () => {
@@ -22,7 +23,7 @@ function Header() {
         <div className='header'>
             <Logo/>
             <div className='header-username'>
-                {/* <h2>{username.username}</h2> */}
+                <h2><i>{state.username}</i></h2>
             </div>
             <div className='header-documents' >
                 <h2 className="header-documents-h2" onClick={handleDocuments}>Документы</h2>
@@ -33,5 +34,6 @@ function Header() {
         </div>
     )
 }
+
 
 export default Header

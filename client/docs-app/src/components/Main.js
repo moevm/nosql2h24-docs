@@ -7,7 +7,7 @@ import Logo from './Logo';
 function Main(props) {
     const navigate = useNavigate();
     const location = useLocation();
-    const username = location.state || {}
+    const state = location.state || {}
 
     const handleExit = (e) => {
       e.preventDefault();
@@ -15,7 +15,7 @@ function Main(props) {
     };
 
     const handleDocuments = () => {
-        navigate('/document_list',{ state:{username : username.username}}); // Переход на маршрут '/documents'
+        navigate('/document_list',{ state:{username: state.username, userId: state.userId}}); // Переход на маршрут '/documents'
     };
   
     return (

@@ -1,0 +1,25 @@
+.document-app {
+    width: 1200px;
+    display: block;
+    margin: auto;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.document-main {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.document-main-view {
+    margin-top: 20px;
+    /* display: flex; */
+    /* flex-direction: row; */
+    width: 100wh;
+}
+
+.document-main-view-content {
+    width: 1200px;
+    height: 80vh;
+} 

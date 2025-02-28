@@ -16,7 +16,7 @@ function DocumentList() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const location = useLocation();
-  const username = location.state || {}
+  const state = location.state || {}
 
   useEffect(() => {
     fetchDocuments();
@@ -91,7 +91,7 @@ function DocumentList() {
       console.log('File sent')
       axios.post(SERVER + "/create_document", 
         {
-          "user": username,
+          "userId": state.userId,
           "title": fileName,
           "filepath": res.data.filename
         },
@@ -123,7 +123,7 @@ return (
             <thead>
               <tr>
                 <th>Название</th>
-                <th>Версия</th>
+                <th>Автор</th>
                 <th>Дата создания</th>
               </tr>
             </thead>
@@ -131,6 +131,8 @@ return (
             {documents.map ((doc) => (
               <tr onClick={(e) => handleDocumentClick(e, doc.id)}>
               <td>{doc.title}</td>
+              <td>{doc.username}</td>
+              <td>{doc.date._DateTime__date._Date__day}-{doc.date._DateTime__date._Date__month}-{doc.date._DateTime__date._Date__year}</td>
               {/* <td>{doc.version.version}</td> */}
               {/* <td>{doc.version.creationDate}</td> */}
               </tr>

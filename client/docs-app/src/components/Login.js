@@ -30,7 +30,7 @@ function Login() {
         .then((res) => {
           console.log(res.data)
           if (res.data.success)
-            navigate('/main', { state:{username : login}}); // Переход на маршрут '/main'
+            navigate('/main', { state:{username : login, userId: res.data.userId}}); // Переход на маршрут '/main'
           else 
             setLoginStatus("Неправильный логин или пароль")
         })
