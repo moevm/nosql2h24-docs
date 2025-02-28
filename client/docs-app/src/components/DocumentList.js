@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo} from 'react';
 import axios from 'axios';
 import Popup from "reactjs-popup"
 import {Document, Page} from 'react-pdf'
@@ -10,6 +10,8 @@ import Header from './Header';
 import { SERVER } from '../routers';
 
 function DocumentList() {
+  const [searchTitle, setSearchTitle] = useState("")
+  const [searchAuthor, setSearchAuthor] = useState("")
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -59,6 +61,35 @@ function DocumentList() {
   };
 
   const openModal = () => {};
+
+  const filterDocuments = useMemo(() => {
+    // Start with the original documents
+    let filtered = [...documents]; // Create a copy to avoid mutating the original
+
+    // Filter by title
+    if (searchTitle) {
+      filtered = filtered.filter(doc =>
+        doc.title.toLowerCase().includes(searchTitle.toLowerCase())
+      );
+    }
+
+    // Filter by author
+    if (searchAuthor) {
+      filtered = filtered.filter(doc =>
+        doc.username.toLowerCase().includes(searchAuthor.toLowerCase())
+      );
+    }
+
+    return filtered;
+  }, [documents, searchTitle, searchAuthor]); // Dependencies: Update when these change
+
+  const handleTitleChange = (e) => {
+    setSearchTitle(e.target.value);
+  };
+
+  const handleAuthorChange = (e) => {
+    setSearchAuthor(e.target.value);
+  };
 
   const handleFilenameChange = (e) => {
     setFileName(e.target.value);
@@ -116,7 +147,7 @@ return (
       <main className="document-main">
         <div className='document-main-table'>
           <div className="search-add-container">
-            <input className="search-input" type="text" placeholder="Поиск..." />
+            <input onChange={handleTitleChange} className="search-input" type="text" placeholder="Поиск..." />
           </div>
 
           <table className="document-list">
@@ -128,7 +159,7 @@ return (
               </tr>
             </thead>
             <tbody>
-            {documents.map ((doc) => (
+            {filterDocuments.map ((doc) => (
               <tr onClick={(e) => handleDocumentClick(e, doc.id)}>
               <td>{doc.title}</td>
               <td>{doc.username}</td>
@@ -160,6 +191,12 @@ return (
                 <div>
                   <label>до </label>
                   <input type="date"></input>
+                </div>
+              </div>
+              <div className='document-filters-element'>
+                <label>Автор</label>
+                <div>
+                  <input type="text" onChange={handleAuthorChange}></input>
                 </div>
               </div>
         </div>
