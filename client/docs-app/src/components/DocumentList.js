@@ -120,6 +120,7 @@ function DocumentList() {
     ).then((res) => {
       console.log(res)
       console.log('File sent')
+      console.log(state.userId)
       axios.post(SERVER + "/create_document", 
         {
           "userId": state.userId,
@@ -134,8 +135,9 @@ function DocumentList() {
             "Content-Type": 'application/json'
           }
         }
-      ).then(() => {
+      ).then((res) => {
         console.log(res)
+        navigate(`/document_info/${res.data.id}`)
       })
     })
   }

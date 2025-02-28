@@ -15,6 +15,7 @@ NEO4J_PASSWORD = "admin"  # Или ваш пароль
 conn = DataBase("neo4j://localhost:7687", "neo4j", "admin")
 # conn.query('MATCH (n) DETACH DELETE n')
 # conn.query("CREATE (admin:User {id: 1, login: 'admin', password: 'admin'})")
+# conn.query("CREATE (guest:User {id: 1, login: 'guest', password: 'guest'})")
 # conn.query("CREATE (document_1:Document {id: 1, title: 'Документ 1'})")
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -74,6 +75,7 @@ async def upload(file: UploadFile = File(...), filename: Optional[str] = None):
 
 @app.post("/create_document")
 def create_document(data = Body()):
+    print(data)
     title = data['title']
     file = data['filepath']
     userId = data['userId']
@@ -97,7 +99,7 @@ def create_document(data = Body()):
 
                 # Вместо небезопасной строки с .format() используем:
                 result = list(session.run(query, title=title, filepath=file, userId=userId))
-                print(result)
+    return {"id":result[0]['d'].element_id}
     # print(data)
 
 @app.get("/get_document")
